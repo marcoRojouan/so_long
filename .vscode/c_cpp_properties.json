@@ -1,0 +1,15 @@
+{
+  "configurations": [
+    {
+      "name": "Linux",
+      "includePath": [
+        "${workspaceFolder}/**",
+        "${workspaceFolder}/mlx"
+      ],
+      "compilerPath": "/usr/bin/cc",
+      "cStandard": "c11",
+      "intelliSenseMode": "linux-clang-x64"
+    }
+  ],
+  "version": 4
+}
