@@ -8,6 +8,6 @@ int main(void)
 	
 	parse_is_valid = parsing();
 	mlx = mlx_init();
-	mlx_new_window(mlx, 1920, 1080, "prout");
+	mlx_new_window(mlx, 800, 400, "prout");
 	mlx_loop(mlx);
 }

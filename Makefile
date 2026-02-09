@@ -6,16 +6,21 @@
 #    By: mrojouan <mrojouan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/08 14:47:39 by mrojouan          #+#    #+#              #
-#    Updated: 2026/02/08 15:13:32 by mrojouan         ###   ########.fr        #
+#    Updated: 2026/02/09 11:38:03 by mrojouan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= so_long
 
-SRC		= so_long.c
+SRC		= so_long.c \
+		  parsing.c
+
+GNL_SRC	= get_next_line/get_next_line.c \
+		  get_next_line/get_next_line_utils.c
 
 OBJ_DIR	= obj
 OBJ		= $(SRC:%.c=$(OBJ_DIR)/%.o)
+GNL_OBJ = $(GNL_SRC:%.c=$(OBJ_DIR)/%.o)
 
 CC		= cc
 FLAGS	= -Wall -Werror -Wextra
@@ -25,14 +30,14 @@ MLX_LIB	= $(MLX_DIR)/libmlx.a
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(MLX_LIB)
+$(NAME): $(OBJ) $(GNL_OBJ) $(MLX_LIB)
 	$(CC) $(FLAGS) $^ -Lmlx -lmlx -lXext -lX11 -lm -lz -o $(NAME)
 
 $(MLX_LIB):
 	make -C $(MLX_DIR)
 
 $(OBJ_DIR)/%.o: %.c
-	mkdir -p $(OBJ_DIR)
+	mkdir -p $(dir $@)
 	$(CC) $(FLAGS) -Imlx -Iincludes -c $< -o $@
 
 clean:
