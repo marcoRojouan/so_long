@@ -1,32 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   verif.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrojouan <mrojouan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/08 15:43:56 by mrojouan          #+#    #+#             */
-/*   Updated: 2026/02/09 15:12:51 by mrojouan         ###   ########.fr       */
+/*   Created: 2026/02/09 15:06:02 by mrojouan          #+#    #+#             */
+/*   Updated: 2026/02/09 16:30:21 by mrojouan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line/get_next_line.h"
 #include <so_long.h>
+#include "get_next_line/get_next_line.h"
 
-int parsing(void)
+int verif_lines_len(t_map *map)
 {
-	int		map_fd;
-	t_map	map;
+	int		line_size;
+	int		first_line_size;
+	int		i;
 
-	map.map = NULL;
-	map.map_size = 0;
-	map.consum_count = 0;
-	map.exit_count = 0;
-	map.player_count = 0;
-	map_fd = open("map.ber", O_RDONLY);
-	if (map_fd < 0)
-		handle_map_error();
-	map_filler(&map, map_fd);
-	verif_map(&map);
-	return (1);
+	first_line_size = ft_strnlen(map->map[0]);
+	i = 1;
+	while (i < map->map_size)
+	{
+		line_size = ft_strnlen(map->map[1]);
+		if (line_size != first_line_size)
+			return (0);
+	}
+	return (1); 
+}
+
+void verif_map(t_map *map)
+{
+	if (verif_lines_len(map) == 0)
+		handle_map_error;
+	
+	
 }

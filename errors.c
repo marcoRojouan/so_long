@@ -1,36 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrojouan <mrojouan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/08 15:49:49 by mrojouan          #+#    #+#             */
-/*   Updated: 2026/02/09 15:08:50 by mrojouan         ###   ########.fr       */
+/*   Created: 2026/02/09 15:13:18 by mrojouan          #+#    #+#             */
+/*   Updated: 2026/02/09 15:13:41 by mrojouan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include <so_long.h>
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <stdio.h>
-
-typedef struct s_map
+void	handle_map_error(void)
 {
-	char	**map;
-	int		player_count;
-	int		exit_count;
-	int		consum_count;
-	int		map_size;
-} 				t_map;
+	char	*error;
 
-int 	parsing();
-int 	ft_strnlen(char *str);
-
-void 	map_filler(t_map *map, int map_fd);
-void	handle_map_error(void);
-
-#endif
+	error = "Map error";
+	write(2, error, ft_strlen(error));
+	exit(1);
+}

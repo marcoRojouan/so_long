@@ -1,36 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrojouan <mrojouan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/08 15:49:49 by mrojouan          #+#    #+#             */
-/*   Updated: 2026/02/09 15:08:50 by mrojouan         ###   ########.fr       */
+/*   Created: 2026/02/09 15:07:04 by mrojouan          #+#    #+#             */
+/*   Updated: 2026/02/09 15:12:50 by mrojouan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include <so_long.h>
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <stdio.h>
-
-typedef struct s_map
+int ft_strnlen(char *str)
 {
-	char	**map;
-	int		player_count;
-	int		exit_count;
-	int		consum_count;
-	int		map_size;
-} 				t_map;
-
-int 	parsing();
-int 	ft_strnlen(char *str);
-
-void 	map_filler(t_map *map, int map_fd);
-void	handle_map_error(void);
-
-#endif
+	int	i;
+	
+	i = 0;
+	while (str[i] && str[i] != '\n')
+		i++;
+	return (i);
+}
