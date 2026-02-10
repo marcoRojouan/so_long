@@ -6,14 +6,18 @@
 #    By: mrojouan <mrojouan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/08 14:47:39 by mrojouan          #+#    #+#              #
-#    Updated: 2026/02/09 11:38:03 by mrojouan         ###   ########.fr        #
+#    Updated: 2026/02/10 15:15:36 by mrojouan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= so_long
 
 SRC		= so_long.c \
-		  parsing.c
+		  parsing.c \
+		  errors.c	\
+		  utils.c	\
+		  verif.c	\
+		  map_filler.c	
 
 GNL_SRC	= get_next_line/get_next_line.c \
 		  get_next_line/get_next_line_utils.c

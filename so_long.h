@@ -6,7 +6,7 @@
 /*   By: mrojouan <mrojouan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 15:49:49 by mrojouan          #+#    #+#             */
-/*   Updated: 2026/02/09 15:08:50 by mrojouan         ###   ########.fr       */
+/*   Updated: 2026/02/10 15:07:56 by mrojouan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ typedef struct s_map
 	int		player_count;
 	int		exit_count;
 	int		consum_count;
-	int		map_size;
+	int		width;
+	int		height;
 } 				t_map;
 
 int 	parsing();
@@ -32,5 +33,6 @@ int 	ft_strnlen(char *str);
 
 void 	map_filler(t_map *map, int map_fd);
 void	handle_map_error(void);
+void	verif_map(t_map *map);
 
 #endif

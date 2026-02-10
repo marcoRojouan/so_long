@@ -6,7 +6,7 @@
 /*   By: mrojouan <mrojouan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 15:43:56 by mrojouan          #+#    #+#             */
-/*   Updated: 2026/02/09 15:12:51 by mrojouan         ###   ########.fr       */
+/*   Updated: 2026/02/10 15:58:03 by mrojouan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int parsing(void)
 	t_map	map;
 
 	map.map = NULL;
-	map.map_size = 0;
+	map.height = 0;
+	map.width = 0;
 	map.consum_count = 0;
 	map.exit_count = 0;
 	map.player_count = 0;
@@ -28,5 +29,6 @@ int parsing(void)
 		handle_map_error();
 	map_filler(&map, map_fd);
 	verif_map(&map);
+	close(map_fd);
 	return (1);
 }
