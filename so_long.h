@@ -6,7 +6,7 @@
 /*   By: mrojouan <mrojouan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 15:49:49 by mrojouan          #+#    #+#             */
-/*   Updated: 2026/02/10 15:07:56 by mrojouan         ###   ########.fr       */
+/*   Updated: 2026/02/12 14:23:55 by mrojouan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ int 	parsing();
 int 	ft_strnlen(char *str);
 
 void 	map_filler(t_map *map, int map_fd);
-void	handle_map_error(void);
+void	handle_map_error(t_map *map);
 void	verif_map(t_map *map);
+void 	free_tab(char **tab);
 
 #endif

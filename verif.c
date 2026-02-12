@@ -6,7 +6,7 @@
 /*   By: mrojouan <mrojouan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 15:06:02 by mrojouan          #+#    #+#             */
-/*   Updated: 2026/02/10 15:59:52 by mrojouan         ###   ########.fr       */
+/*   Updated: 2026/02/12 14:24:33 by mrojouan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,14 +72,44 @@ static int	verif_walls(t_map *map)
 	return (1);
 }
 
+static int verif_typo(t_map *map)
+{
+	int	i;
+	int j;
+	char current;
+
+	i = 0;
+	while (map->map[i])
+	{
+		j = 0;
+		while (map->map[i][j])
+		{
+			current = map->map[i][j];
+			if (current != 'C' && current != 'P' && current != 'E'
+					&& current != '1' && current != '0' && current != '\n')
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1); 
+}
+
 void verif_map(t_map *map)
 {
 	if (verif_lines_len(map) == 0 || map->width <= 3)
-		handle_map_error();
+		handle_map_error(map);
 	if (map->height >= 0 && map->height <= 3)
-		handle_map_error();
+		handle_map_error(map);
 	if (verif_top_bottom(map) == 0)
-		handle_map_error();
+		handle_map_error(map);
 	if (verif_walls(map) == 0)
-		handle_map_error();
+		handle_map_error(map);
+	if (!(map->consum_count >= 1 
+			&& map->exit_count == 1
+				&& map->player_count == 1))
+		handle_map_error(map);
+	if (verif_typo(map) == 0)
+		handle_map_error(map);
 }
+
