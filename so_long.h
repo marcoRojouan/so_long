@@ -6,7 +6,7 @@
 /*   By: mrojouan <mrojouan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 15:49:49 by mrojouan          #+#    #+#             */
-/*   Updated: 2026/02/15 17:00:32 by mrojouan         ###   ########.fr       */
+/*   Updated: 2026/02/16 12:21:14 by mrojouan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,14 @@ typedef struct s_position
 	int player_x;
 }				t_position;
 
-int 	parsing();
 int 	ft_strnlen(char *str);
 
 char	*ft_strdup(char *s);
 
+void	parsing(t_map *map, t_position *position);
 void	get_position(t_map *map, t_position *position);
 void	flood_fill(char **tab, t_map *map, int player_y, int player_x);
+void 	check_path(t_map *map, t_position *position);
 void 	map_filler(t_map *map, int map_fd);
 void	handle_map_error(t_map *map);
 void	verif_map(t_map *map);

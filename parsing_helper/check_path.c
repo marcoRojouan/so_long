@@ -6,7 +6,7 @@
 /*   By: mrojouan <mrojouan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 16:35:15 by mrojouan          #+#    #+#             */
-/*   Updated: 2026/02/15 17:07:37 by mrojouan         ###   ########.fr       */
+/*   Updated: 2026/02/16 10:22:50 by mrojouan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,40 @@ static char **copy_map(t_map *map)
 	return (copy);
 }
 
+static int is_filled(char **map)
+{
+	int	i;
+	int j;
+	char current;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			current = map[i][j];
+			if (current == 'C' || current == 'E')
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1); 
+}
 
 void check_path(t_map *map, t_position *position)
 {
 	char **map_copy;
 
 	map_copy = copy_map(map);
+	if (!map_copy)
+		handle_map_error(map);
 	flood_fill(map_copy, map, position->player_y, position->player_x);
+	if (!is_filled(map_copy))
+	{
+		free_tab(map_copy);
+		handle_map_error(map);
+	}
 	free_tab(map_copy);
 }
