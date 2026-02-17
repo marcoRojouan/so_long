@@ -6,7 +6,7 @@
 /*   By: mrojouan <mrojouan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 15:49:49 by mrojouan          #+#    #+#             */
-/*   Updated: 2026/02/16 12:21:14 by mrojouan         ###   ########.fr       */
+/*   Updated: 2026/02/17 14:48:22 by mrojouan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,17 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <stdio.h>
+
+typedef struct s_tiles
+{
+    void *wall;
+    void *floor;
+    void *player;
+    void *collect;
+    void *exit;
+    int  tile_width;
+    int  tile_height;
+} 				t_tiles;
 
 typedef struct s_map
 {
@@ -35,8 +46,6 @@ typedef struct s_position
 }				t_position;
 
 int 	ft_strnlen(char *str);
-
-char	*ft_strdup(char *s);
 
 void	parsing(t_map *map, t_position *position);
 void	get_position(t_map *map, t_position *position);

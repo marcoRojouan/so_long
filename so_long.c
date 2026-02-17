@@ -27,6 +27,6 @@ int main(void)
 	initialise_pos(&position);
 	parsing(&map, &position);
 	mlx = mlx_init();
-	mlx_new_window(mlx, 800, 400, "prout");
+	mlx_new_window(mlx, map.width * 32, map.height * 32, "prout");
 	mlx_loop(mlx);
 }

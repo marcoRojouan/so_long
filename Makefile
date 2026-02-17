@@ -6,7 +6,7 @@
 #    By: mrojouan <mrojouan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/08 14:47:39 by mrojouan          #+#    #+#              #
-#    Updated: 2026/02/15 17:09:23 by mrojouan         ###   ########.fr        #
+#    Updated: 2026/02/17 11:43:59 by mrojouan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ OBJ		= $(SRC:%.c=$(OBJ_DIR)/%.o)
 GNL_OBJ = $(GNL_SRC:%.c=$(OBJ_DIR)/%.o)
 
 CC		= cc
-FLAGS	= -Wall -Werror -Wextra
+FLAGS	= -Wall -Werror -Wextra -g
 
 MLX_DIR	= mlx
 MLX_LIB	= $(MLX_DIR)/libmlx.a

@@ -6,7 +6,7 @@
 /*   By: mrojouan <mrojouan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 15:06:02 by mrojouan          #+#    #+#             */
-/*   Updated: 2026/02/13 14:09:55 by mrojouan         ###   ########.fr       */
+/*   Updated: 2026/02/17 11:57:22 by mrojouan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,9 +97,9 @@ static int verif_typo(t_map *map)
 
 void verif_map(t_map *map)
 {
-	if (verif_lines_len(map) == 0 || map->width <= 3)
+	if (verif_lines_len(map) == 0 || map->width <= 2)
 		handle_map_error(map);
-	if (map->height <= 3)
+	if (map->height <= 2)
 		handle_map_error(map);
 	if (verif_top_bottom(map) == 0)
 		handle_map_error(map);

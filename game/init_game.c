@@ -1,39 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrojouan <mrojouan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/09 15:07:04 by mrojouan          #+#    #+#             */
-/*   Updated: 2026/02/17 11:15:27 by mrojouan         ###   ########.fr       */
+/*   Created: 2026/02/17 14:53:29 by mrojouan          #+#    #+#             */
+/*   Updated: 2026/02/17 16:05:52 by mrojouan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
-#include "get_next_line/get_next_line.h"
+#include <mlx.h>
 
-void free_tab(char **tab)
+void init_game(void *mlx)
 {
-	int i;
+	t_tiles *tiles;
 
-	i = 0;
-	if (!tab)
-		return ;
-	while (tab[i])
-	{
-		free(tab[i]);
-		i++;
-	}
-	free(tab);
-}
-
-int ft_strnlen(char *str)
-{
-	int	i;
-	
-	i = 0;
-	while (str[i] && str[i] != '\n')
-		i++;
-	return (i);
+	tiles->floor = mlx_xpm_file_to_image(
+		mlx, "../texture/sol.xmp", tiles->tile_width, tiles->tile_height);
 }
