@@ -27,6 +27,8 @@ int main(void)
 	initialise_pos(&position);
 	parsing(&map, &position);
 	mlx = mlx_init();
+	if (!mlx)
+		handle_map_error(&map);
 	init_game(mlx, &map);
 	free_tab(map.map);
 }

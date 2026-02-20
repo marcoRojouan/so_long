@@ -6,14 +6,14 @@
 /*   By: mrojouan <mrojouan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 14:53:29 by mrojouan          #+#    #+#             */
-/*   Updated: 2026/02/19 14:24:25 by mrojouan         ###   ########.fr       */
+/*   Updated: 2026/02/20 15:00:31 by mrojouan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 #include <mlx.h>
 
-static void init_texture(t_tiles *tiles, void *mlx)
+static int init_texture(t_tiles *tiles, void *mlx)
 {
 	tiles->tile_width = 32;
 	tiles->tile_height = 32;
@@ -27,6 +27,11 @@ static void init_texture(t_tiles *tiles, void *mlx)
 		mlx, "texture/ordinateur.xpm", &tiles->tile_width, &tiles->tile_height);
 	tiles->wall = mlx_xpm_file_to_image(
 		mlx, "texture/wall.xpm", &tiles->tile_width, &tiles->tile_height);
+	if (!tiles->floor || !tiles->wall
+		|| !tiles->player || !tiles->collect
+		|| !tiles->exit)
+		return (0);
+	return (1);
 }
 
 static void display_tile(
@@ -68,7 +73,10 @@ void init_game(void *mlx, t_map *map)
 	void *window;
 
 	window = mlx_new_window(mlx, map->width * 32, map->height * 32, "PROUT");
-	init_texture(&tiles, mlx);
+	if (!window)
+		handle_map_error(map);
+	if (!init_texture(&tiles, mlx))
+		handle_map_error(map);
 	send_current_tile(&tiles, mlx, window, map);
 	mlx_loop(mlx);
 }
