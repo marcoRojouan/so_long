@@ -6,14 +6,14 @@
 /*   By: mrojouan <mrojouan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 15:43:56 by mrojouan          #+#    #+#             */
-/*   Updated: 2026/02/20 14:47:54 by mrojouan         ###   ########.fr       */
+/*   Updated: 2026/02/22 16:54:20 by mrojouan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line/get_next_line.h"
 #include <so_long.h>
 
-void parsing(t_map *map, t_position *position)
+void parsing(t_game *game)
 {
 	int		map_fd;
 	
@@ -21,16 +21,16 @@ void parsing(t_map *map, t_position *position)
 	if (map_fd < 0)
 	{
 		close(map_fd);
-		handle_map_error(map);
+		handle_map_error(game);
 	}
-	map_filler(map, map_fd);
-	if (!map->map || !map->map[0])
+	map_filler(game, map_fd);
+	if (!game->map || !game->map[0])
 	{
 		close(map_fd);
-		handle_map_error(map);
+		handle_map_error(game);
 	}
-	verif_map(map);
-	get_position(map, position);
-	check_path(map, position);
+	verif_map(game);
+	get_position(game);
+	check_path(game);
 	close(map_fd);
 }

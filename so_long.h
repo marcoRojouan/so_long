@@ -6,7 +6,7 @@
 /*   By: mrojouan <mrojouan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 15:49:49 by mrojouan          #+#    #+#             */
-/*   Updated: 2026/02/18 13:55:29 by mrojouan         ###   ########.fr       */
+/*   Updated: 2026/02/22 17:26:40 by mrojouan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <fcntl.h>
 # include <stdio.h>
 
-typedef struct s_tiles
+typedef struct s_game
 {
     void *wall;
     void *floor;
@@ -27,34 +27,32 @@ typedef struct s_tiles
     void *exit;
     int  tile_width;
     int  tile_height;
-} 				t_tiles;
-
-typedef struct s_map
-{
+	
 	char	**map;
 	int		player_count;
 	int		exit_count;
 	int		consum_count;
 	int		width;
 	int		height;
-} 				t_map;
-
-typedef struct s_position
-{
+	
 	int player_y;
 	int player_x;
-}				t_position;
+
+	void *mlx;
+	void *window;
+} 				t_game;
 
 int 	ft_strnlen(char *str);
+int		exit_window(t_game *game);
 
-void	parsing(t_map *map, t_position *position);
-void	get_position(t_map *map, t_position *position);
-void	flood_fill(char **tab, t_map *map, int player_y, int player_x);
-void	init_game(void *mlx, t_map *map);
-void 	check_path(t_map *map, t_position *position);
-void 	map_filler(t_map *map, int map_fd);
-void	handle_map_error(t_map *map);
-void	verif_map(t_map *map);
+void	parsing(t_game *game);
+void	get_position(t_game *game);
+void	flood_fill(char **tab, t_game *game, int player_y, int player_x);
+void	init_game(t_game *game);
+void 	check_path(t_game *game);
+void 	map_filler(t_game *game, int map_fd);
+void	handle_map_error(t_game *game);
+void	verif_map(t_game *game);
 void 	free_tab(char **tab);
 
 #endif

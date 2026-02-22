@@ -6,7 +6,7 @@
 #    By: mrojouan <mrojouan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/08 14:47:39 by mrojouan          #+#    #+#              #
-#    Updated: 2026/02/18 14:00:56 by mrojouan         ###   ########.fr        #
+#    Updated: 2026/02/22 17:28:26 by mrojouan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ SRC		= so_long.c \
 		parsing_helper/check_path.c \
 		parsing_helper/flood_fill.c \
 		parsing_helper/get_position.c \
-		game/init_game.c
+		game/init_game.c \
+		game/exit_window.c
 
 GNL_SRC	= get_next_line/get_next_line.c \
 		  get_next_line/get_next_line_utils.c

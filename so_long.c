@@ -1,34 +1,29 @@
 #include <mlx.h>
 #include <so_long.h>
 
-static void	initialise_map(t_map *map)
+static void	initialise_game(t_game *game)
 {
-	map->map = NULL;
-	map->height = 0;
-	map->width = 0;
-	map->consum_count = 0;
-	map->exit_count = 0;
-	map->player_count = 0;
-}
-
-static void	initialise_pos(t_position *position)
-{
-	position->player_x = 0;
-	position->player_y = 0;
+	game->map = NULL;
+	game->height = 0;
+	game->width = 0;
+	game->consum_count = 0;
+	game->exit_count = 0;
+	game->player_count = 0;
+	game->player_x = 0;
+	game->player_y = 0;
 }
 
 int main(void)
 {
-	void	*mlx;
-	t_position position;
-	t_map	map;
+	t_game	game;
 	
-	initialise_map(&map);
-	initialise_pos(&position);
-	parsing(&map, &position);
-	mlx = mlx_init();
-	if (!mlx)
-		handle_map_error(&map);
-	init_game(mlx, &map);
-	free_tab(map.map);
+	initialise_game(&game);
+	parsing(&game);
+	game.mlx = mlx_init();
+	if (!game.mlx)
+		handle_map_error(&game);
+	init_game(&game);
+	mlx_loop(game.mlx);
+	free_tab(game.map);
+	free(game.mlx);
 }

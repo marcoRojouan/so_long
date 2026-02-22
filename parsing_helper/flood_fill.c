@@ -6,13 +6,13 @@
 /*   By: mrojouan <mrojouan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 15:32:18 by mrojouan          #+#    #+#             */
-/*   Updated: 2026/02/17 12:00:52 by mrojouan         ###   ########.fr       */
+/*   Updated: 2026/02/22 17:11:14 by mrojouan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 
-static void	fill(char **tab, t_map *size, char wall, int row, int col)
+static void	fill(char **tab, t_game *size, char wall, int row, int col)
 {
 	if (row < 0 || col < 0 || row >= size->height || col >= size->width)
 		return ;
@@ -31,10 +31,10 @@ static void	fill(char **tab, t_map *size, char wall, int row, int col)
 	
 }
 
-void	flood_fill(char **copy, t_map *map, int player_y, int player_x)
+void	flood_fill(char **copy, t_game *game, int player_y, int player_x)
 {
 	char wall;
 
 	wall = '1';
-	fill(copy, map, wall, player_y, player_x);
+	fill(copy, game, wall, player_y, player_x);
 }

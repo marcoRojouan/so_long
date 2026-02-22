@@ -6,7 +6,7 @@
 /*   By: mrojouan <mrojouan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 14:11:21 by mrojouan          #+#    #+#             */
-/*   Updated: 2026/02/13 14:10:28 by mrojouan         ###   ########.fr       */
+/*   Updated: 2026/02/22 17:10:34 by mrojouan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,22 @@ static void change_last_char(char *line)
 	 	line[len - 1] = '\0';
 }
 
-static void get_map_size(t_map *map)
+static void get_map_size(t_game *game)
 {
 	char	*line;
 	int		tmp_map_fd;
 
 	tmp_map_fd = open("map.ber", O_RDONLY);
 	if (tmp_map_fd < 0)
-		handle_map_error(map);
+		handle_map_error(game);
 	line = get_next_line(tmp_map_fd);
 	if (!line)
-		handle_map_error(map);
+		handle_map_error(game);
 	change_last_char(line);
-	map->width = ft_strlen(line);
+	game->width = ft_strlen(line);
 	while (line)
 	{	
-		map->height++;
+		game->height++;
 		free(line);
 		line = get_next_line(tmp_map_fd);
 		if (line)
@@ -46,46 +46,46 @@ static void get_map_size(t_map *map)
 	close(tmp_map_fd);
 }
 
-static void count_occ(t_map *map)
+static void count_occ(t_game *game)
 {
 	int	i;
 	int j;
 	
 	i = 0;
-	while (map->map[i])
+	while (game->map[i])
 	{
 		j = 0;
-		while (map->map[i][j])
+		while (game->map[i][j])
 		{
-			if (map->map[i][j] == 'C')
-				map->consum_count++;
-			else if (map->map[i][j] == 'E')
-				map->exit_count++;
-			else if (map->map[i][j] == 'P')
-				map->player_count++;
+			if (game->map[i][j] == 'C')
+				game->consum_count++;
+			else if (game->map[i][j] == 'E')
+				game->exit_count++;
+			else if (game->map[i][j] == 'P')
+				game->player_count++;
 			j++;
 		}
 		i++;
 	}
 }
 
-void map_filler(t_map *map, int map_fd)
+void map_filler(t_game *game, int map_fd)
 {
 	int	i;
 
 	i = 0;
-	get_map_size(map);
-	map->map = malloc(sizeof(char *) * (map->height + 1));
-	if (!map->map)
-		handle_map_error(map);
-	while (i < map->height)
+	get_map_size(game);
+	game->map = malloc(sizeof(char *) * (game->height + 1));
+	if (!game->map)
+		handle_map_error(game);
+	while (i < game->height)
 	{
-		map->map[i] = get_next_line(map_fd);
-		if (!map->map[i])
-			handle_map_error(map);
-		change_last_char(map->map[i]);
+		game->map[i] = get_next_line(map_fd);
+		if (!game->map[i])
+			handle_map_error(game);
+		change_last_char(game->map[i]);
 		i++;
 	}
-	map->map[i] = NULL;
-	count_occ(map);
+	game->map[i] = NULL;
+	count_occ(game);
 }	

@@ -6,27 +6,27 @@
 /*   By: mrojouan <mrojouan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 16:11:51 by mrojouan          #+#    #+#             */
-/*   Updated: 2026/02/17 11:14:30 by mrojouan         ###   ########.fr       */
+/*   Updated: 2026/02/22 16:59:26 by mrojouan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 
-static void get_player_position(t_map *map, t_position *position)
+static void get_player_position(t_game *game)
 {
 	int	i;
 	int j;
 	
 	i = 0;
-	while (i < map->height)
+	while (i < game->height)
 	{
 		j = 0;
-		while (map->map[i][j])
+		while (game->map[i][j])
 		{			
-			if (map->map[i][j] == 'P')
+			if (game->map[i][j] == 'P')
 			{
-				position->player_y = i;
-				position->player_x = j;
+				game->player_y = i;
+				game->player_x = j;
 				return ;
 			}
 			j++;
@@ -34,29 +34,8 @@ static void get_player_position(t_map *map, t_position *position)
 		i++;
 	} 
 }
-// static void get_player_position(t_map *map, t_position *position)
-// {
-// 	int	i;
-// 	int j;
-	
-// 	i = 0;
-// 	while (i < map->height)
-// 	{
-// 		j = 0;
-// 		while (map->map[i][j])
-// 		{			
-// 			if (map->map[i][j] == 'P')
-// 			{
-// 				position->player_y = i;
-// 				position->player_x = j;
-// 				return ;
-// 			}
-// 			j++;
-// 		}
-// 		i++;
-// 	} 
-// }
-void get_position(t_map *map, t_position *position)
+
+void get_position(t_game *game)
 {
-	get_player_position(map, position);
+	get_player_position(game);
 }
