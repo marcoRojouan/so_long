@@ -6,7 +6,7 @@
 /*   By: mrojouan <mrojouan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 15:49:49 by mrojouan          #+#    #+#             */
-/*   Updated: 2026/02/22 17:26:40 by mrojouan         ###   ########.fr       */
+/*   Updated: 2026/02/23 15:30:12 by mrojouan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <stdio.h>
+# include <X11/keysym.h>
+# include <X11/X.h>
 
 typedef struct s_game
 {
@@ -32,6 +34,7 @@ typedef struct s_game
 	int		player_count;
 	int		exit_count;
 	int		consum_count;
+	int		move_count;
 	int		width;
 	int		height;
 	
@@ -44,9 +47,11 @@ typedef struct s_game
 
 int 	ft_strnlen(char *str);
 int		exit_window(t_game *game);
+int		key_press(int keypress, t_game *game);
 
 void	parsing(t_game *game);
 void	get_position(t_game *game);
+void	send_current_tile(t_game *game);
 void	flood_fill(char **tab, t_game *game, int player_y, int player_x);
 void	init_game(t_game *game);
 void 	check_path(t_game *game);

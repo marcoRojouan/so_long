@@ -6,7 +6,7 @@
 /*   By: mrojouan <mrojouan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 14:53:29 by mrojouan          #+#    #+#             */
-/*   Updated: 2026/02/22 17:26:49 by mrojouan         ###   ########.fr       */
+/*   Updated: 2026/02/23 15:29:58 by mrojouan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void display_tile(t_game *game, char current , int i, int j)
 		mlx_put_image_to_window(game->mlx, game->window, game->exit, j * 32, i * 32);
 }
 
-static void send_current_tile(t_game *game)
+void send_current_tile(t_game *game)
 {
 	int i;
 	int j;
@@ -73,5 +73,6 @@ void init_game(t_game *game)
 	if (!init_texture(game))
 		handle_map_error(game);
 	send_current_tile(game);
+	mlx_hook(game->window, 2, 1L<<0, key_press, game);
 	mlx_hook(game->window, 17, 0, exit_window, game);
 }

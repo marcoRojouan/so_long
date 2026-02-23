@@ -6,7 +6,7 @@
 /*   By: mrojouan <mrojouan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 16:38:46 by mrojouan          #+#    #+#             */
-/*   Updated: 2026/02/22 17:27:41 by mrojouan         ###   ########.fr       */
+/*   Updated: 2026/02/23 14:11:07 by mrojouan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,5 @@ int exit_window(t_game *game)
 		mlx_destroy_display(game->mlx);
 		free(game->mlx);
 	}
-	exit(0);
+	exit(1);
 }

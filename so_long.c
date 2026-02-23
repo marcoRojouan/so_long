@@ -11,6 +11,7 @@ static void	initialise_game(t_game *game)
 	game->player_count = 0;
 	game->player_x = 0;
 	game->player_y = 0;
+	game->move_count = 0;
 }
 
 int main(void)
