@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojouan <mrojouan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loup <loup@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 14:53:29 by mrojouan          #+#    #+#             */
-/*   Updated: 2026/02/23 15:29:58 by mrojouan         ###   ########.fr       */
+/*   Updated: 2026/02/23 18:28:44 by loup             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void send_current_tile(t_game *game)
 
 void init_game(t_game *game)
 {
-	game->window = mlx_new_window(game->mlx, game->width * 32, game->height * 32, "PROUT");
+	game->window = mlx_new_window(game->mlx, game->width * 32, game->height * 32, "so_long");
 	if (!game->window)
 		handle_map_error(game);
 	if (!init_texture(game))
