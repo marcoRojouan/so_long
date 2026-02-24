@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_press.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loup <loup@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mrojouan <mrojouan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 10:56:45 by mrojouan          #+#    #+#             */
-/*   Updated: 2026/02/23 18:28:47 by loup             ###   ########.fr       */
+/*   Updated: 2026/02/24 14:07:36 by mrojouan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,13 @@ int key_press(int keypress, t_game *game)
 {
 	if (keypress == XK_Escape)
 		exit_window(game);
-	if (keypress == XK_w)
+	if (keypress == XK_Up)
 		rerender(game, 0, -1);
-	if (keypress == XK_d)
+	if (keypress == XK_Right)
 		rerender(game, 1, 0);
-	if (keypress == XK_a)
+	if (keypress == XK_Left)
 		rerender(game, -1, 0);
-	if (keypress == XK_s)
+	if (keypress == XK_Down)
 		rerender(game, 0, 1);
 	return (0);
 }

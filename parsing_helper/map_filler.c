@@ -6,7 +6,7 @@
 /*   By: mrojouan <mrojouan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 14:11:21 by mrojouan          #+#    #+#             */
-/*   Updated: 2026/02/22 17:10:34 by mrojouan         ###   ########.fr       */
+/*   Updated: 2026/02/24 14:15:25 by mrojouan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ static void get_map_size(t_game *game)
 
 	tmp_map_fd = open("map.ber", O_RDONLY);
 	if (tmp_map_fd < 0)
-		handle_map_error(game);
+		handle_map_error(game, "Invalid map\n");
 	line = get_next_line(tmp_map_fd);
 	if (!line)
-		handle_map_error(game);
+		handle_map_error(game, "Invalid map\n");
 	change_last_char(line);
 	game->width = ft_strlen(line);
 	while (line)
@@ -77,12 +77,12 @@ void map_filler(t_game *game, int map_fd)
 	get_map_size(game);
 	game->map = malloc(sizeof(char *) * (game->height + 1));
 	if (!game->map)
-		handle_map_error(game);
+		handle_map_error(game, "Invalid map\n");
 	while (i < game->height)
 	{
 		game->map[i] = get_next_line(map_fd);
 		if (!game->map[i])
-			handle_map_error(game);
+			handle_map_error(game, "Invalid map\n");
 		change_last_char(game->map[i]);
 		i++;
 	}

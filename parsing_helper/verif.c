@@ -6,7 +6,7 @@
 /*   By: mrojouan <mrojouan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 15:06:02 by mrojouan          #+#    #+#             */
-/*   Updated: 2026/02/22 16:58:41 by mrojouan         ###   ########.fr       */
+/*   Updated: 2026/02/24 14:12:18 by mrojouan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,18 +98,18 @@ static int verif_typo(t_game *game)
 void verif_map(t_game *game)
 {
 	if (verif_lines_len(game) == 0 || game->width <= 2)
-		handle_map_error(game);
+		handle_map_error(game, "Map not rectangular\n");
 	if (game->height <= 2)
-		handle_map_error(game);
+		handle_map_error(game, "Invalid map size\n");
 	if (verif_top_bottom(game) == 0)
-		handle_map_error(game);
+		handle_map_error(game, "Map not close\n");
 	if (verif_walls(game) == 0)
-		handle_map_error(game);
+		handle_map_error(game, "Map not close\n");
 	if (!(game->consum_count >= 1 
 			&& game->exit_count == 1
 				&& game->player_count == 1))
-		handle_map_error(game);
+		handle_map_error(game, "Invalid elements\n");
 	if (verif_typo(game) == 0)
-		handle_map_error(game);
+		handle_map_error(game, "Invalid map\n");
 }
 

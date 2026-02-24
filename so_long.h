@@ -6,7 +6,7 @@
 /*   By: mrojouan <mrojouan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 15:49:49 by mrojouan          #+#    #+#             */
-/*   Updated: 2026/02/23 15:30:12 by mrojouan         ###   ########.fr       */
+/*   Updated: 2026/02/24 14:16:31 by mrojouan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,16 @@ typedef struct s_game
 int 	ft_strnlen(char *str);
 int		exit_window(t_game *game);
 int		key_press(int keypress, t_game *game);
+int		ft_strcmp(char *s1, char *s2);
 
-void	parsing(t_game *game);
+void	parsing(t_game *game, char *mapfile);
 void	get_position(t_game *game);
 void	send_current_tile(t_game *game);
 void	flood_fill(char **tab, t_game *game, int player_y, int player_x);
 void	init_game(t_game *game);
 void 	check_path(t_game *game);
 void 	map_filler(t_game *game, int map_fd);
-void	handle_map_error(t_game *game);
+void	handle_map_error(t_game *game, char *error);
 void	verif_map(t_game *game);
 void 	free_tab(char **tab);
 

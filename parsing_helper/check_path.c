@@ -6,7 +6,7 @@
 /*   By: mrojouan <mrojouan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 16:35:15 by mrojouan          #+#    #+#             */
-/*   Updated: 2026/02/22 17:00:44 by mrojouan         ###   ########.fr       */
+/*   Updated: 2026/02/24 14:13:15 by mrojouan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,12 @@ void check_path(t_game *game)
 
 	map_copy = copy_map(game);
 	if (!map_copy)
-		handle_map_error(game);
+		handle_map_error(game, "Invalid map\n");
 	flood_fill(map_copy, game, game->player_y, game->player_x);
 	if (!is_filled(map_copy))
 	{
 		free_tab(map_copy);
-		handle_map_error(game);
+		handle_map_error(game, "Invalid game path\n");
 	}
 	free_tab(map_copy);
 }
