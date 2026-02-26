@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_filler.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrojouan <mrojouan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loup <loup@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 14:11:21 by mrojouan          #+#    #+#             */
-/*   Updated: 2026/02/24 14:15:25 by mrojouan         ###   ########.fr       */
+/*   Updated: 2026/02/26 18:01:25 by loup             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ static void change_last_char(char *line)
 	 	line[len - 1] = '\0';
 }
 
-static void get_map_size(t_game *game)
+static void get_map_size(t_game *game, char *mapfile)
 {
 	char	*line;
 	int		tmp_map_fd;
 
-	tmp_map_fd = open("map.ber", O_RDONLY);
+	tmp_map_fd = open(mapfile, O_RDONLY);
 	if (tmp_map_fd < 0)
 		handle_map_error(game, "Invalid map\n");
 	line = get_next_line(tmp_map_fd);
@@ -69,12 +69,12 @@ static void count_occ(t_game *game)
 	}
 }
 
-void map_filler(t_game *game, int map_fd)
+void map_filler(t_game *game, int map_fd, char *mapfile)
 {
 	int	i;
 
 	i = 0;
-	get_map_size(game);
+	get_map_size(game, mapfile);
 	game->map = malloc(sizeof(char *) * (game->height + 1));
 	if (!game->map)
 		handle_map_error(game, "Invalid map\n");
