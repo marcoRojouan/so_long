@@ -6,7 +6,7 @@
 /*   By: mrojouan <mrojouan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 14:53:29 by mrojouan          #+#    #+#             */
-/*   Updated: 2026/02/24 14:14:10 by mrojouan         ###   ########.fr       */
+/*   Updated: 2026/02/25 15:51:48 by mrojouan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ static int init_texture(t_game *game)
 	game->floor = mlx_xpm_file_to_image(
 		game->mlx, "texture/floor.xpm", &game->tile_width, &game->tile_height);
 	game->collect = mlx_xpm_file_to_image(
-		game->mlx, "texture/file.xpm", &game->tile_width, &game->tile_height);
+		game->mlx, "texture/collect.xpm", &game->tile_width, &game->tile_height);
 	game->exit = mlx_xpm_file_to_image(
-		game->mlx, "texture/exit.xpm", &game->tile_width, &game->tile_height);
+		game->mlx, "texture/exit2.xpm", &game->tile_width, &game->tile_height);
 	game->player = mlx_xpm_file_to_image(
-		game->mlx, "texture/ordinateur.xpm", &game->tile_width, &game->tile_height);
+		game->mlx, "texture/player.xpm", &game->tile_width, &game->tile_height);
 	game->wall = mlx_xpm_file_to_image(
-		game->mlx, "texture/wall.xpm", &game->tile_width, &game->tile_height);
+		game->mlx, "texture/wall2.xpm", &game->tile_width, &game->tile_height);
 	if (!game->floor || !game->wall	|| !game->player || !game->collect
 		|| !game->exit)
 		return (0);
