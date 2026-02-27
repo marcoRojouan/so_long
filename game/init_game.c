@@ -6,7 +6,7 @@
 /*   By: mrojouan <mrojouan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 14:53:29 by mrojouan          #+#    #+#             */
-/*   Updated: 2026/02/27 14:56:04 by mrojouan         ###   ########.fr       */
+/*   Updated: 2026/02/27 15:01:16 by mrojouan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	init_texture(t_game *game)
 			game->mlx, wall_path, &game->tile_width, &game->tile_height);
 	if (!game->floor || !game->wall || !game->player || !game->collect
 		|| !game->exit)
-		exit_window(game);
+		return (0);
 	return (1);
 }
 
@@ -82,12 +82,18 @@ void	init_game(t_game *game)
 {
 	game->tile_width = 32;
 	game->tile_height = 32;
-	game->window = mlx_new_window(
-			game->mlx, game->width * 32, game->height * 32, "so_long");
-	if (!game->window)
-		handle_map_error(game, "Window error \n");
+	game->window = NULL;
 	if (!init_texture(game))
-		handle_map_error(game, "Texture error \n");
+	{
+		write(2, "Texture error\n", 13);
+		exit_window(game);
+	}
+	if (!game->window)
+	{
+		write(2, "Window error\n", 13);
+		exit_window(game);
+	}
+	
 	send_current_tile(game);
 	mlx_hook(game->window, 2, 1L << 0, key_press, game);
 	mlx_hook(game->window, 17, 0, exit_window, game);
