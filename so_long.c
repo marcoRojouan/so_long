@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mrojouan <mrojouan@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/27 10:51:30 by mrojouan          #+#    #+#             */
+/*   Updated: 2026/02/27 14:54:32 by mrojouan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <mlx.h>
 #include <so_long.h>
 
@@ -14,10 +26,10 @@ static void	initialise_game(t_game *game)
 	game->move_count = 0;
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_game	game;
-	
+
 	if (ac != 2)
 		return (0);
 	initialise_game(&game);

@@ -6,14 +6,14 @@
 /*   By: mrojouan <mrojouan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 16:38:46 by mrojouan          #+#    #+#             */
-/*   Updated: 2026/02/23 14:11:07 by mrojouan         ###   ########.fr       */
+/*   Updated: 2026/02/27 13:22:26 by mrojouan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 #include <mlx.h>
 
-int exit_window(t_game *game)
+int	exit_window(t_game *game)
 {
 	if (game->map)
 		free_tab(game->map);

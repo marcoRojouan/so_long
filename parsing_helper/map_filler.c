@@ -3,26 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   map_filler.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loup <loup@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mrojouan <mrojouan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 14:11:21 by mrojouan          #+#    #+#             */
-/*   Updated: 2026/02/26 18:01:25 by loup             ###   ########.fr       */
+/*   Updated: 2026/02/27 11:18:54 by mrojouan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 #include "get_next_line/get_next_line.h"
 
-static void change_last_char(char *line)
+static void	change_last_char(char *line)
 {
-	int len;
+	int	len;
 
 	len = ft_strlen(line);
 	if (len > 0 && line[len - 1] == '\n')
-	 	line[len - 1] = '\0';
+		line[len - 1] = '\0';
 }
 
-static void get_map_size(t_game *game, char *mapfile)
+static void	get_map_size(t_game *game, char *mapfile)
 {
 	char	*line;
 	int		tmp_map_fd;
@@ -36,7 +36,7 @@ static void get_map_size(t_game *game, char *mapfile)
 	change_last_char(line);
 	game->width = ft_strlen(line);
 	while (line)
-	{	
+	{
 		game->height++;
 		free(line);
 		line = get_next_line(tmp_map_fd);
@@ -46,11 +46,11 @@ static void get_map_size(t_game *game, char *mapfile)
 	close(tmp_map_fd);
 }
 
-static void count_occ(t_game *game)
+static void	count_occ(t_game *game)
 {
 	int	i;
-	int j;
-	
+	int	j;
+
 	i = 0;
 	while (game->map[i])
 	{
@@ -69,7 +69,7 @@ static void count_occ(t_game *game)
 	}
 }
 
-void map_filler(t_game *game, int map_fd, char *mapfile)
+void	map_filler(t_game *game, int map_fd, char *mapfile)
 {
 	int	i;
 
@@ -88,4 +88,4 @@ void map_filler(t_game *game, int map_fd, char *mapfile)
 	}
 	game->map[i] = NULL;
 	count_occ(game);
-}	
+}

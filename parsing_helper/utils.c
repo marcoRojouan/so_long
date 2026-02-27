@@ -6,7 +6,7 @@
 /*   By: mrojouan <mrojouan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 15:07:04 by mrojouan          #+#    #+#             */
-/*   Updated: 2026/02/24 12:13:43 by mrojouan         ###   ########.fr       */
+/*   Updated: 2026/02/27 11:15:36 by mrojouan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ int	ft_strcmp(char *s1, char *s2)
 	return (0);
 }
 
-void free_tab(char **tab)
+void	free_tab(char **tab)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!tab)
@@ -42,10 +42,10 @@ void free_tab(char **tab)
 	free(tab);
 }
 
-int ft_strnlen(char *str)
+int	ft_strnlen(char *str)
 {
 	int	i;
-	
+
 	i = 0;
 	while (str[i] && str[i] != '\n')
 		i++;

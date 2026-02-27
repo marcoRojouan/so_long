@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loup <loup@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mrojouan <mrojouan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 15:43:56 by mrojouan          #+#    #+#             */
-/*   Updated: 2026/02/26 18:06:04 by loup             ###   ########.fr       */
+/*   Updated: 2026/02/27 11:17:44 by mrojouan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static int	check_mapfile(char *mapfile)
 {
-	int len;
+	int	len;
 
 	len = ft_strlen(mapfile);
 	if (len < 5)
@@ -25,10 +25,10 @@ static int	check_mapfile(char *mapfile)
 	return (1);
 }
 
-void parsing(t_game *game, char *mapfile)
+void	parsing(t_game *game, char *mapfile)
 {
 	int		map_fd;
-	
+
 	if (check_mapfile(mapfile) != 0)
 		handle_map_error(game, "Invalid file\n");
 	map_fd = open(mapfile, O_RDONLY);

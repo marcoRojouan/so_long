@@ -6,14 +6,14 @@
 /*   By: mrojouan <mrojouan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 15:06:02 by mrojouan          #+#    #+#             */
-/*   Updated: 2026/02/24 14:12:18 by mrojouan         ###   ########.fr       */
+/*   Updated: 2026/02/27 11:15:01 by mrojouan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 #include "get_next_line/get_next_line.h"
 
-static int verif_lines_len(t_game *game)
+static int	verif_lines_len(t_game *game)
 {
 	int		line_size;
 	int		first_line_size;
@@ -28,12 +28,12 @@ static int verif_lines_len(t_game *game)
 			return (0);
 		i++;
 	}
-	return (1); 
+	return (1);
 }
 
-static int verif_top_bottom(t_game *game)
+static int	verif_top_bottom(t_game *game)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < game->width)
@@ -51,9 +51,10 @@ static int verif_top_bottom(t_game *game)
 	}
 	return (1);
 }
+
 static int	verif_walls(t_game *game)
 {
-	int i;
+	int	i;
 
 	i = 1;
 	while (i < game->height - 1)
@@ -72,11 +73,11 @@ static int	verif_walls(t_game *game)
 	return (1);
 }
 
-static int verif_typo(t_game *game)
+static int	verif_typo(t_game *game)
 {
-	int	i;
-	int j;
-	char current;
+	int		i;
+	int		j;
+	char	current;
 
 	i = 0;
 	while (i < game->height)
@@ -86,16 +87,16 @@ static int verif_typo(t_game *game)
 		{
 			current = game->map[i][j];
 			if (current != 'C' && current != 'P' && current != 'E'
-					&& current != '1' && current != '0')
+				&& current != '1' && current != '0')
 				return (0);
 			j++;
 		}
 		i++;
 	}
-	return (1); 
+	return (1);
 }
 
-void verif_map(t_game *game)
+void	verif_map(t_game *game)
 {
 	if (verif_lines_len(game) == 0 || game->width <= 2)
 		handle_map_error(game, "Map not rectangular\n");
@@ -105,11 +106,10 @@ void verif_map(t_game *game)
 		handle_map_error(game, "Map not close\n");
 	if (verif_walls(game) == 0)
 		handle_map_error(game, "Map not close\n");
-	if (!(game->consum_count >= 1 
+	if (!(game->consum_count >= 1
 			&& game->exit_count == 1
-				&& game->player_count == 1))
+			&& game->player_count == 1))
 		handle_map_error(game, "Invalid elements\n");
 	if (verif_typo(game) == 0)
 		handle_map_error(game, "Invalid map\n");
 }
-

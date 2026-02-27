@@ -6,7 +6,7 @@
 /*   By: mrojouan <mrojouan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 10:56:45 by mrojouan          #+#    #+#             */
-/*   Updated: 2026/02/24 14:07:36 by mrojouan         ###   ########.fr       */
+/*   Updated: 2026/02/27 13:47:02 by mrojouan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@ void	ft_putnbr_fd(int nbr, int fd)
 	write(fd, &c, 1);
 }
 
-static void print_moves(t_game *game)
+static void	print_moves(t_game *game)
 {
 	write(1, "Deplacement = ", 14);
 	ft_putnbr_fd(game->move_count, 1);
 	write(1, "\n", 1);
 }
 
-static void refacto_map(t_game *game, int new_posx, int new_posy)
+static void	refacto_map(t_game *game, int new_posx, int new_posy)
 {
 	game->map[game->player_y][game->player_x] = '0';
 	game->map[new_posy][new_posx] = 'P';
@@ -48,20 +48,19 @@ static void refacto_map(t_game *game, int new_posx, int new_posy)
 	game->player_y = new_posy;
 }
 
-static void rerender(t_game *game, int x, int y)
+static void	rerender(t_game *game, int x, int y)
 {
-	int new_posx;
-	int new_posy;
+	int	new_posx;
+	int	new_posy;
 
 	new_posx = game->player_x + x;
 	new_posy = game->player_y + y;
-
 	if (game->map[new_posy][new_posx] == 'C')
 		game->consum_count--;
-	if (game->map[new_posy][new_posx] == 'E' 
+	if (game->map[new_posy][new_posx] == 'E'
 			|| game->map[new_posy][new_posx] == '1')
 	{
-		if (game->map[new_posy][new_posx] == 'E' 
+		if (game->map[new_posy][new_posx] == 'E'
 			&& game->consum_count == 0)
 		{
 			exit_window(game);
@@ -75,7 +74,7 @@ static void rerender(t_game *game, int x, int y)
 	send_current_tile(game);
 }
 
-int key_press(int keypress, t_game *game)
+int	key_press(int keypress, t_game *game)
 {
 	if (keypress == XK_Escape)
 		exit_window(game);

@@ -6,16 +6,16 @@
 /*   By: mrojouan <mrojouan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 16:35:15 by mrojouan          #+#    #+#             */
-/*   Updated: 2026/02/24 14:13:15 by mrojouan         ###   ########.fr       */
+/*   Updated: 2026/02/27 11:17:15 by mrojouan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 #include "get_next_line/get_next_line.h"
 
-static char **copy_map(t_game *game)
+static char	**copy_map(t_game *game)
 {
-	char **copy;
+	char	**copy;
 	int		i;
 
 	i = 0;
@@ -38,11 +38,11 @@ static char **copy_map(t_game *game)
 	return (copy);
 }
 
-static int is_filled(char **map)
+static int	is_filled(char **map)
 {
-	int	i;
-	int j;
-	char current;
+	int		i;
+	int		j;
+	char	current;
 
 	i = 0;
 	while (map[i])
@@ -57,12 +57,12 @@ static int is_filled(char **map)
 		}
 		i++;
 	}
-	return (1); 
+	return (1);
 }
 
-void check_path(t_game *game)
+void	check_path(t_game *game)
 {
-	char **map_copy;
+	char	**map_copy;
 
 	map_copy = copy_map(game);
 	if (!map_copy)

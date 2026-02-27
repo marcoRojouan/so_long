@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loup <loup@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mrojouan <mrojouan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 15:49:49 by mrojouan          #+#    #+#             */
-/*   Updated: 2026/02/26 18:01:21 by loup             ###   ########.fr       */
+/*   Updated: 2026/02/27 11:05:12 by mrojouan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,30 +22,27 @@
 
 typedef struct s_game
 {
-    void *wall;
-    void *floor;
-    void *player;
-    void *collect;
-    void *exit;
-    int  tile_width;
-    int  tile_height;
-	
+	void	*wall;
+	void	*floor;
+	void	*player;
+	void	*collect;
+	void	*exit;
+	int		tile_width;
+	int		tile_height;
 	char	**map;
 	int		player_count;
 	int		exit_count;
 	int		consum_count;
 	int		move_count;
 	int		width;
-	int		height;
-	
-	int player_y;
-	int player_x;
+	int		height;	
+	int		player_y;
+	int		player_x;
+	void	*mlx;
+	void	*window;
+}	t_game;
 
-	void *mlx;
-	void *window;
-} 				t_game;
-
-int 	ft_strnlen(char *str);
+int		ft_strnlen(char *str);
 int		exit_window(t_game *game);
 int		key_press(int keypress, t_game *game);
 int		ft_strcmp(char *s1, char *s2);
@@ -55,10 +52,10 @@ void	get_position(t_game *game);
 void	send_current_tile(t_game *game);
 void	flood_fill(char **tab, t_game *game, int player_y, int player_x);
 void	init_game(t_game *game);
-void 	check_path(t_game *game);
-void 	map_filler(t_game *game, int map_fd, char *mapfile);
+void	check_path(t_game *game);
+void	map_filler(t_game *game, int map_fd, char *mapfile);
 void	handle_map_error(t_game *game, char *error);
 void	verif_map(t_game *game);
-void 	free_tab(char **tab);
+void	free_tab(char **tab);
 
 #endif

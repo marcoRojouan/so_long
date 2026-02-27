@@ -6,51 +6,64 @@
 /*   By: mrojouan <mrojouan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 14:53:29 by mrojouan          #+#    #+#             */
-/*   Updated: 2026/02/25 15:51:48 by mrojouan         ###   ########.fr       */
+/*   Updated: 2026/02/27 14:56:04 by mrojouan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 #include <mlx.h>
 
-static int init_texture(t_game *game)
+static int	init_texture(t_game *game)
 {
-	game->tile_width = 32;
-	game->tile_height = 32;
+	char	*floor_path;
+	char	*collect_path;
+	char	*exit_path;
+	char	*player_path;
+	char	*wall_path;
+
+	floor_path = "texture/floor.xpm";
+	collect_path = "texture/collect.xpm";
+	exit_path = "texture/exit2.xpm";
+	player_path = "texture/player.xpm";
+	wall_path = "texture/wall2.xpm";
 	game->floor = mlx_xpm_file_to_image(
-		game->mlx, "texture/floor.xpm", &game->tile_width, &game->tile_height);
+			game->mlx, floor_path, &game->tile_width, &game->tile_height);
 	game->collect = mlx_xpm_file_to_image(
-		game->mlx, "texture/collect.xpm", &game->tile_width, &game->tile_height);
+			game->mlx, collect_path, &game->tile_width, &game->tile_height);
 	game->exit = mlx_xpm_file_to_image(
-		game->mlx, "texture/exit2.xpm", &game->tile_width, &game->tile_height);
+			game->mlx, exit_path, &game->tile_width, &game->tile_height);
 	game->player = mlx_xpm_file_to_image(
-		game->mlx, "texture/player.xpm", &game->tile_width, &game->tile_height);
+			game->mlx, player_path, &game->tile_width, &game->tile_height);
 	game->wall = mlx_xpm_file_to_image(
-		game->mlx, "texture/wall2.xpm", &game->tile_width, &game->tile_height);
-	if (!game->floor || !game->wall	|| !game->player || !game->collect
+			game->mlx, wall_path, &game->tile_width, &game->tile_height);
+	if (!game->floor || !game->wall || !game->player || !game->collect
 		|| !game->exit)
-		return (0);
+		exit_window(game);
 	return (1);
 }
 
-static void display_tile(t_game *game, char current , int i, int j)
+static void	display_tile(t_game *game, char current, int i, int j)
 {
-	mlx_put_image_to_window(game->mlx, game->window, game->floor, j * 32, i * 32);
+	mlx_put_image_to_window(
+		game->mlx, game->window, game->floor, j * 32, i * 32);
 	if (current == '1')
 		mlx_put_image_to_window(
 			game->mlx, game->window, game->wall, j * 32, i * 32);
 	else if (current == 'P')
-		mlx_put_image_to_window(game->mlx, game->window, game->player, j * 32, i * 32);
+		mlx_put_image_to_window(
+			game->mlx, game->window, game->player, j * 32, i * 32);
 	else if (current == 'C')
-		mlx_put_image_to_window(game->mlx, game->window, game->collect, j * 32, i * 32);
+		mlx_put_image_to_window(
+			game->mlx, game->window, game->collect, j * 32, i * 32);
 	else if (current == 'E')
-		mlx_put_image_to_window(game->mlx, game->window, game->exit, j * 32, i * 32);
+		mlx_put_image_to_window(
+			game->mlx, game->window, game->exit, j * 32, i * 32);
 }
 
-void send_current_tile(t_game *game)
+void	send_current_tile(t_game *game)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < game->height)
@@ -63,16 +76,19 @@ void send_current_tile(t_game *game)
 		}
 		i++;
 	}
-} 
+}
 
-void init_game(t_game *game)
+void	init_game(t_game *game)
 {
-	game->window = mlx_new_window(game->mlx, game->width * 32, game->height * 32, "so_long");
+	game->tile_width = 32;
+	game->tile_height = 32;
+	game->window = mlx_new_window(
+			game->mlx, game->width * 32, game->height * 32, "so_long");
 	if (!game->window)
 		handle_map_error(game, "Window error \n");
 	if (!init_texture(game))
 		handle_map_error(game, "Texture error \n");
 	send_current_tile(game);
-	mlx_hook(game->window, 2, 1L<<0, key_press, game);
+	mlx_hook(game->window, 2, 1L << 0, key_press, game);
 	mlx_hook(game->window, 17, 0, exit_window, game);
 }
