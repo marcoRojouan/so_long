@@ -6,7 +6,7 @@
 /*   By: mrojouan <mrojouan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 14:53:29 by mrojouan          #+#    #+#             */
-/*   Updated: 2026/02/27 15:01:16 by mrojouan         ###   ########.fr       */
+/*   Updated: 2026/03/02 14:54:38 by mrojouan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,8 @@ void	init_game(t_game *game)
 {
 	game->tile_width = 32;
 	game->tile_height = 32;
-	game->window = NULL;
+	game->window = mlx_new_window(
+			game->mlx, game->width * 32, game->height * 32, "so_long");
 	if (!init_texture(game))
 	{
 		write(2, "Texture error\n", 13);
@@ -93,7 +94,6 @@ void	init_game(t_game *game)
 		write(2, "Window error\n", 13);
 		exit_window(game);
 	}
-	
 	send_current_tile(game);
 	mlx_hook(game->window, 2, 1L << 0, key_press, game);
 	mlx_hook(game->window, 17, 0, exit_window, game);
